@@ -13,3 +13,6 @@
 [submodule "litex/litex-boards"]
 	path = litex/litex-boards
 	url = https://github.com/litex-hub/litex-boards.git
+[submodule "litex/litespi"]
+	path = litex/litespi
+	url = https://github.com/litex-hub/litespi
