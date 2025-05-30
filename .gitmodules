@@ -12,7 +12,7 @@
 	url = https://github.com/enjoy-digital/litevideo.git
 [submodule "litex/litex-boards"]
 	path = litex/litex-boards
-	url = https://github.com/litex-hub/litex-boards.git
+	url = https://github.com/fjpolo/litex-boards
 [submodule "litex/litespi"]
 	path = litex/litespi
 	url = https://github.com/litex-hub/litespi
