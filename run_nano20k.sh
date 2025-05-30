@@ -18,6 +18,13 @@ cd firmware/demo/ && make && cd ${ROOT_DIR} && cp firmware/demo/demo.bin . && mv
 # source ~/oss-cad-suite/environment && ./litex/litex-boards/litex_boards/targets/sipeed_tang_nano_20k.py --build --integrated-rom-init=${DEMO_PATH} --toolchain=apicula --cpu-type=serv --bus-standard=wishbone && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
 source ~/oss-cad-suite/environment && ./litex/litex-boards/litex_boards/targets/sipeed_tang_nano_20k.py --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
 
+# # Flash app to SPIFlash
+# python3 -m litex.soc.software.crcfbigen firmware/demo/demo.bin -o firmware/demo/demo.fbi --fbi --little
+# sudo openFPGALoader -b tangnano20k -f ${PWD}/firmware/demo/demo.fbi --offset 0x700000
+
+
+###
+
 # # Fw application
 # cd firmware/demo/ && make && cd ../..
 # # Use the LiteX crcfbigen tool to create the flash-bootable binary (.fbi)
