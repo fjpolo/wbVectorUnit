@@ -1,0 +1,205 @@
+
+Discarded input sections
+
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .group         0x0000000000000000        0xc main.o
+ .text          0x0000000000000000       0x90 main.o
+ .data          0x0000000000000000        0x0 main.o
+ .bss           0x0000000000000000       0x40 main.o
+ .rodata.str1.4
+                0x0000000000000000      0x1c3 main.o
+ .text.startup  0x0000000000000000      0x388 main.o
+ .sbss          0x0000000000000000        0x4 main.o
+ .debug_info    0x0000000000000000      0xa2b main.o
+ .debug_abbrev  0x0000000000000000      0x276 main.o
+ .debug_loc     0x0000000000000000      0x36a main.o
+ .debug_aranges
+                0x0000000000000000       0x28 main.o
+ .debug_ranges  0x0000000000000000      0x250 main.o
+ .debug_macro   0x0000000000000000      0x1aa main.o
+ .debug_macro   0x0000000000000000      0x73c main.o
+ .debug_macro   0x0000000000000000      0x50c main.o
+ .debug_macro   0x0000000000000000       0x27 main.o
+ .debug_macro   0x0000000000000000       0x94 main.o
+ .debug_macro   0x0000000000000000      0x201 main.o
+ .debug_macro   0x0000000000000000       0x35 main.o
+ .debug_macro   0x0000000000000000      0x103 main.o
+ .debug_macro   0x0000000000000000       0x34 main.o
+ .debug_macro   0x0000000000000000       0x57 main.o
+ .debug_macro   0x0000000000000000       0x6a main.o
+ .debug_macro   0x0000000000000000      0x1df main.o
+ .debug_macro   0x0000000000000000       0x82 main.o
+ .debug_macro   0x0000000000000000      0x4cc main.o
+ .debug_macro   0x0000000000000000       0x58 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x97 main.o
+ .debug_macro   0x0000000000000000       0x35 main.o
+ .debug_macro   0x0000000000000000       0x10 main.o
+ .debug_macro   0x0000000000000000       0x20 main.o
+ .debug_macro   0x0000000000000000      0x13f main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x27 main.o
+ .debug_macro   0x0000000000000000       0x8d main.o
+ .debug_macro   0x0000000000000000      0x388 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x2f main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x35 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x88 main.o
+ .debug_macro   0x0000000000000000       0x3c main.o
+ .debug_macro   0x0000000000000000      0x2bd main.o
+ .debug_line    0x0000000000000000      0xe72 main.o
+ .debug_str     0x0000000000000000     0x9bce main.o
+ .comment       0x0000000000000000        0xf main.o
+ .debug_frame   0x0000000000000000       0x54 main.o
+ .riscv.attributes
+                0x0000000000000000       0x1c main.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .group         0x0000000000000000        0xc vector_test.o
+ .text          0x0000000000000000       0x3c vector_test.o
+ .data          0x0000000000000000        0x0 vector_test.o
+ .bss           0x0000000000000000       0xa0 vector_test.o
+ .rodata.str1.4
+                0x0000000000000000       0x39 vector_test.o
+ .debug_info    0x0000000000000000      0x254 vector_test.o
+ .debug_abbrev  0x0000000000000000      0x161 vector_test.o
+ .debug_aranges
+                0x0000000000000000       0x20 vector_test.o
+ .debug_macro   0x0000000000000000      0x1c5 vector_test.o
+ .debug_macro   0x0000000000000000      0x73c vector_test.o
+ .debug_macro   0x0000000000000000      0x50c vector_test.o
+ .debug_macro   0x0000000000000000       0x27 vector_test.o
+ .debug_macro   0x0000000000000000       0x94 vector_test.o
+ .debug_macro   0x0000000000000000      0x201 vector_test.o
+ .debug_macro   0x0000000000000000       0x35 vector_test.o
+ .debug_macro   0x0000000000000000      0x103 vector_test.o
+ .debug_macro   0x0000000000000000       0x34 vector_test.o
+ .debug_macro   0x0000000000000000       0x57 vector_test.o
+ .debug_macro   0x0000000000000000       0x6a vector_test.o
+ .debug_macro   0x0000000000000000      0x1df vector_test.o
+ .debug_macro   0x0000000000000000       0x82 vector_test.o
+ .debug_macro   0x0000000000000000      0x4cc vector_test.o
+ .debug_macro   0x0000000000000000       0x58 vector_test.o
+ .debug_macro   0x0000000000000000       0x16 vector_test.o
+ .debug_macro   0x0000000000000000       0x97 vector_test.o
+ .debug_macro   0x0000000000000000       0x35 vector_test.o
+ .debug_macro   0x0000000000000000       0x10 vector_test.o
+ .debug_macro   0x0000000000000000       0x20 vector_test.o
+ .debug_macro   0x0000000000000000      0x13f vector_test.o
+ .debug_macro   0x0000000000000000       0x16 vector_test.o
+ .debug_macro   0x0000000000000000       0x27 vector_test.o
+ .debug_macro   0x0000000000000000       0x8d vector_test.o
+ .debug_macro   0x0000000000000000      0x388 vector_test.o
+ .debug_macro   0x0000000000000000       0x16 vector_test.o
+ .debug_macro   0x0000000000000000       0x2f vector_test.o
+ .debug_macro   0x0000000000000000       0x16 vector_test.o
+ .debug_macro   0x0000000000000000       0x35 vector_test.o
+ .debug_macro   0x0000000000000000       0x88 vector_test.o
+ .debug_macro   0x0000000000000000       0x3c vector_test.o
+ .debug_macro   0x0000000000000000      0x2bd vector_test.o
+ .debug_macro   0x0000000000000000       0x16 vector_test.o
+ .debug_line    0x0000000000000000      0x6b2 vector_test.o
+ .debug_str     0x0000000000000000     0x9b6d vector_test.o
+ .comment       0x0000000000000000        0xf vector_test.o
+ .debug_frame   0x0000000000000000       0x2c vector_test.o
+ .riscv.attributes
+                0x0000000000000000       0x1c vector_test.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+rom              0x0000000000000000 0x0000000000008000 xr
+sram             0x0000000001000000 0x0000000000002000 xrw
+main_ram         0x0000000040000000 0x0000000000800000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD main.o
+LOAD vector_test.o
+
+.text
+ *(.text .text.*)
+ *(.rodata .rodata.*)
+
+.data
+ *(.data .data.*)
+
+.bss            0x0000000040000000        0x0
+                0x0000000040000000                . = ALIGN (0x10)
+                0x0000000040000000                _bss_start = .
+ *(.bss .bss.*)
+ *(COMMON)
+                0x0000000040000000                _bss_end = .
+
+.stack          0x0000000040000000     0x1000
+                0x0000000040000000                . = ALIGN (0x10)
+                0x0000000040001000                . = (. + 0x1000)
+ *fill*         0x0000000040000000     0x1000 
+                0x0000000040001000                _stack = .
+                0x0000000040001000                _heap_start = .
+                0x0000000040800000                _heap_end = (ORIGIN (main_ram) + LENGTH (main_ram))
+OUTPUT(demo.elf elf32-littleriscv)
