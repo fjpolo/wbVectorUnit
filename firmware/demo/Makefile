@@ -1,64 +1,74 @@
-BUILD_DIR?=../build/ # This default will be overridden by command line
+# Define the root of your primary LiteX framework installation.
+# This path is where common.mak was found in previous steps.
+LITEX_CORE_ROOT = $(HOME)/Workspace/wbVectorUnit/litex/litex
 
-# Corrected include paths:
-SOC_DIRECTORY = /mnt/c/Workspace/wbVectorUnit/litex/litex/litex/soc/software/
-BUILD_DIR = /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/
-LIBBASE_DIRECTORY = /home/fpolomimi/Workspace/litex/litex/soc/software/libbase/
-include /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/generated/variables.mak
-include /mnt/c/Workspace/wbVectorUnit/litex/litex/litex/soc/software/common.mak
+# Define the root of your specific SoC's build directory.
+# This is where generated headers, BIOS, and picolibc sources are.
+# This path is relative to where your `sipeed_tang_nano_20k.py` builds.
+LITEX_SOC_BUILD_DIR = $(HOME)/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k
 
-OBJECTS  = donut.o helloc.o crt0.o main.o
-ifdef WITH_CXX
-    OBJECTS += hellocpp.o
-    CFLAGS += -DWITH_CXX
-endif
+# Include common LiteX software variables and rules FIRST.
+# This will set defaults for CC, LD, OBJCOPY etc.
+include $(LITEX_CORE_ROOT)/litex/soc/software/common.mak
 
-all: demo.bin
+# Override the compiler variables to ensure they are correct.
+# The 'override' directive ensures these definitions take precedence,
+# even over definitions from included Makefiles.
+override CROSS_COMPILE = riscv64-unknown-elf-
+override CC = $(CROSS_COMPILE)gcc
+override LD = $(CROSS_COMPILE)ld
+override OBJCOPY = $(CROSS_COMPILE)objcopy
 
+$(info DEBUG: CC is set to "$(CC)") # Keep this for debugging
 
-%.bin: %.elf
-	$(OBJCOPY) -O binary $< $@
-ifneq ($(OS),Windows_NT)
-	chmod -x $@
-endif
+# Application-specific settings
+TARGET = demo
+SRCS = main.c vector_test.c
 
-vpath %.a $(PACKAGES:%=../%)
+# Object files (automatically generated from SRCS)
+OBJS = $(SRCS:.c=.o)
 
-demo.elf: $(OBJECTS)
-	$(CC) $(LDFLAGS) -T linker.ld -N -o $@ \
-		$(OBJECTS) \
-		$(PACKAGES:%=-L$(BUILD_DIR)/software/%) \
-		-Wl,--whole-archive \
-		-Wl,--gc-sections \
-		-Wl,-Map,$@.map \
-		$(LIBS:lib%=-l%)
+# Define ALL CFLAGS, overriding any set by common.mak if necessary.
+# This ensures only the paths we specify are used.
+override CFLAGS = \
+	-nostdlib -Os \
+	-march=rv32i -mabi=ilp32 \
+	-Wall -Werror \
+	-g3 -no-pie -fomit-frame-pointer -fno-builtin -fno-stack-protector \
+	-fexceptions -Wstrict-prototypes -Wold-style-definition -Wmissing-prototypes \
+	-I$(LITEX_SOC_BUILD_DIR)/software/include \
+	-I$(LITEX_SOC_BUILD_DIR)/software/include/generated \
+	-I$(LITEX_SOC_BUILD_DIR)/software/bios/include \
+	-I/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/include \
+	-I/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software \
+	-I/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/cores/cpu/serv \
+	-I$(LITEX_SOC_BUILD_DIR)/software/picolibc_src/newlib/libc/include \
+	-I$(LITEX_SOC_BUILD_DIR)/software/picolibc_src/newlib/libc/tinystdio \
+	-I$(LITEX_SOC_BUILD_DIR)/software/libc
 
-ifneq ($(OS),Windows_NT)
-	chmod -x $@
-endif
+# Linker script: Use the BIOS linker script, which places the application in RAM
+LDSCRIPT = $(LITEX_SOC_BUILD_DIR)/software/bios/linker.ld
 
-# pull in dependency info for *existing* .o files
--include $(OBJECTS:.o=.d)
-
-donut.o: CFLAGS  += -w
-
-# This VPATH is for finding source files that are NOT in the current directory.
-# It relies on BIOS_DIRECTORY and CPU_DIRECTORY being defined in variables.mak.
-# If all your needed .c/.S files are in firmware/demo, this might not be strictly needed for them,
-# but it's crucial for any LiteX common libraries.
-VPATH = $(BIOS_DIRECTORY):$(BIOS_DIRECTORY)/cmds:$(CPU_DIRECTORY)
-
-
-%.o: %.cpp
-	$(compilexx)
-
-%.o: %.c
-	$(compile)
-
-%.o: %.S
-	$(assemble)
-
-clean:
-	$(RM) $(OBJECTS) demo.elf demo.bin .*~ *~
+# LDFLAGS: Link against the LiteX BIOS library and other necessary components
+LDFLAGS += \
+	-L$(LITEX_SOC_BUILD_DIR)/software/bios \
+	-l$(shell basename $(LITEX_SOC_BUILD_DIR)/software/bios/bios) \
+	-Wl,--gc-sections \
+	-Wl,-Map=$(TARGET).elf.map \
+	-T $(LDSCRIPT)
 
 .PHONY: all clean
+
+all: $(TARGET).elf $(TARGET).bin
+
+$(TARGET).elf: $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS)
+
+$(TARGET).bin: $(TARGET).elf
+	$(OBJCOPY) -O binary $< $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(TARGET).elf $(TARGET).bin $(OBJS) $(TARGET).elf.map
