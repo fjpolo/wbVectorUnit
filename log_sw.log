@@ -1,0 +1,2 @@
+make: Entering directory '/mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/libc'
+cp -a /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/../picolibc_src

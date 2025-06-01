@@ -1,0 +1,8 @@
+cp: -r not specified; omitting directory '/home/fpolomimi/Workspace/litex/litex/soc/software/demo/__pycache__'
+ CC       donut.o
+ CC       helloc.o
+ CC       main.o
+ CC       demo.elf
+chmod -x demo.elf
+ OBJCOPY  demo.bin
+chmod -x demo.bin

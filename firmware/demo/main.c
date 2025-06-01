@@ -16,8 +16,7 @@
 #include <generated/csr.h> // For CSR access macros and interrupt definitions
 
 // Declare the new test function
-extern void vector_test_cmd(void);
-// Remove extern void vu_irq_handler(void); as it's only needed for interrupts
+void vector_test_cmd(void);
 
 /*-----------------------------------------------------------------------*/
 /* Uart                                                                  */
