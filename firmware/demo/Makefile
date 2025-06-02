@@ -1,58 +1,64 @@
-# Toolchain setup
-CROSS_COMPILE = riscv64-unknown-elf-
-CC = $(CROSS_COMPILE)gcc
-LD = $(CROSS_COMPILE)ld
-OBJCOPY = $(CROSS_COMPILE)objcopy
+BUILD_DIR?=../build/ # This default will be overridden by command line
 
-# Paths
-LITEX_CORE_ROOT = $(HOME)/Workspace/litex_new_clean/litex
-LITEX_SOC_BUILD_DIR = $(HOME)/Workspace/litex_new_clean/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k
+# Corrected include paths:
+SOC_DIRECTORY = ${PWD}/../../litex/litex/litex/soc/software/
+BUILD_DIR = ${PWD}/../../litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/
+LIBBASE_DIRECTORY = ${PWD}/../../litex/litex/litex/soc/software/libbase/
+include ${PWD}/../../litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/generated/variables.mak
+include ${PWD}/../../litex/litex/litex/soc/software/common.mak
 
-# Target and sources
-TARGET = demo
-SRCS = main.c vector_test.c
-OBJS = $(SRCS:.c=.o)
+OBJECTS  = donut.o helloc.o crt0.o  vector_test.o main.o
+ifdef WITH_CXX
+    OBJECTS += hellocpp.o
+    CFLAGS += -DWITH_CXX
+endif
 
-# Use local linker script
-LDSCRIPT = linker.ld
+all: demo.bin
 
-# Compiler flags with all include paths
-CFLAGS = \
-    -nostdlib -Os \
-    -march=rv32i -mabi=ilp32 \
-    -Wall -Werror \
-    -g3 -fomit-frame-pointer \
-    -I. \
-    -I$(LITEX_SOC_BUILD_DIR)/software/include \
-    -I$(LITEX_SOC_BUILD_DIR)/software/include/generated \
-    -I$(LITEX_SOC_BUILD_DIR)/software/bios/include \
-    -I$(LITEX_CORE_ROOT)/litex/soc/software/include \
-    -I$(LITEX_SOC_BUILD_DIR)/software/picolibc_src/newlib/libc/include \
-    -I$(LITEX_SOC_BUILD_DIR)/software/picolibc_src/newlib/libc/tinystdio \
-    -I$(LITEX_SOC_BUILD_DIR)/software/libc \
-	-I$(LITEX_CORE_ROOT)/litex/soc/software/libbase \
-	-I$(LITEX_CORE_ROOT)/litex/soc/software \
-	-I$(LITEX_CORE_ROOT)/litex/soc/cores/cpu/serv
 
-# Linker flags
-LDFLAGS = \
-    -nostdlib \
-    -Wl,--gc-sections \
-    -Wl,-Map=$(TARGET).elf.map \
-    -T $(LDSCRIPT)
-
-.PHONY: all clean
-
-all: $(TARGET).bin
-
-$(TARGET).elf: $(OBJS) $(LDSCRIPT)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $@
-
-$(TARGET).bin: $(TARGET).elf
+%.bin: %.elf
 	$(OBJCOPY) -O binary $< $@
+ifneq ($(OS),Windows_NT)
+	chmod -x $@
+endif
+
+vpath %.a $(PACKAGES:%=../%)
+
+demo.elf: $(OBJECTS)
+	$(CC) $(LDFLAGS) -T linker.ld -N -o $@ \
+		$(OBJECTS) \
+		$(PACKAGES:%=-L$(BUILD_DIR)/software/%) \
+		-Wl,--whole-archive \
+		-Wl,--gc-sections \
+		-Wl,-Map,$@.map \
+		$(LIBS:lib%=-l%)
+
+ifneq ($(OS),Windows_NT)
+	chmod -x $@
+endif
+
+# pull in dependency info for *existing* .o files
+-include $(OBJECTS:.o=.d)
+
+donut.o: CFLAGS  += -w
+
+# This VPATH is for finding source files that are NOT in the current directory.
+# It relies on BIOS_DIRECTORY and CPU_DIRECTORY being defined in variables.mak.
+# If all your needed .c/.S files are in firmware/demo, this might not be strictly needed for them,
+# but it's crucial for any LiteX common libraries.
+VPATH = $(BIOS_DIRECTORY):$(BIOS_DIRECTORY)/cmds:$(CPU_DIRECTORY)
+
+
+%.o: %.cpp
+	$(compilexx)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(compile)
+
+%.o: %.S
+	$(assemble)
 
 clean:
-	rm -f $(TARGET).elf $(TARGET).bin $(OBJS) *.map
+	$(RM) $(OBJECTS) demo.elf demo.bin .*~ *~
+
+.PHONY: all clean

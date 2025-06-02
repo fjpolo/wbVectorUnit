@@ -2,7 +2,7 @@ main.o: main.c \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/tinystdio/stdio.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/inttypes.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/newlib.h \
- /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/../libc/picolibc.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/../libc/picolibc.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/sys/config.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/machine/ieeefp.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/sys/features.h \
@@ -24,14 +24,12 @@ main.o: main.c \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/string.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/strings.h \
  /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/sys/string.h \
- /home/fpolomimi/Workspace/litex/litex/soc/software/include/irq.h \
- /home/fpolomimi/Workspace/litex/litex/soc/cores/cpu/serv/irq.h \
- /home/fpolomimi/Workspace/litex/litex/soc/software/libbase/uart.h \
- /home/fpolomimi/Workspace/litex/litex/soc/software/libbase/console.h \
- /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/generated/csr.h \
- /mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/generated/soc.h \
- /home/fpolomimi/Workspace/litex/litex/soc/cores/cpu/serv/system.h \
- /home/fpolomimi/Workspace/litex/litex/soc/software/include/hw/common.h
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/libbase/uart.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/libbase/console.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/generated/csr.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/generated/soc.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/cores/cpu/serv/system.h \
+ /home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/include/hw/common.h
 
 /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/tinystdio/stdio.h:
 
@@ -39,7 +37,7 @@ main.o: main.c \
 
 /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/newlib.h:
 
-/mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/../libc/picolibc.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/../libc/picolibc.h:
 
 /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/sys/config.h:
 
@@ -83,18 +81,14 @@ main.o: main.c \
 
 /home/fpolomimi/Workspace/pythondata-software-picolibc/pythondata_software_picolibc/data/newlib/libc/include/sys/string.h:
 
-/home/fpolomimi/Workspace/litex/litex/soc/software/include/irq.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/libbase/uart.h:
 
-/home/fpolomimi/Workspace/litex/litex/soc/cores/cpu/serv/irq.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/libbase/console.h:
 
-/home/fpolomimi/Workspace/litex/litex/soc/software/libbase/uart.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/generated/csr.h:
 
-/home/fpolomimi/Workspace/litex/litex/soc/software/libbase/console.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex-boards/litex_boards/targets/build/sipeed_tang_nano_20k/software/include/generated/soc.h:
 
-/mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/generated/csr.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/cores/cpu/serv/system.h:
 
-/mnt/c/Workspace/wbVectorUnit/build/sipeed_tang_nano_20k/software/include/generated/soc.h:
-
-/home/fpolomimi/Workspace/litex/litex/soc/cores/cpu/serv/system.h:
-
-/home/fpolomimi/Workspace/litex/litex/soc/software/include/hw/common.h:
+/home/fpolomimi/Workspace/wbVectorUnit/litex/litex/litex/soc/software/include/hw/common.h:

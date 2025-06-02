@@ -1,43 +1,66 @@
-/* Custom linker script for LiteX on Tang Nano 20K */
-MEMORY {
-    rom         (rx)  : ORIGIN = 0x00000000, LENGTH = 0x00008000 /* Your firmware will be placed here by linker */
-    sram        (rwx) : ORIGIN = 0x01000000, LENGTH = 0x00002000
-    main_ram (rwx) : ORIGIN = 0x40000000, LENGTH = 0x00800000 /* This is where the BIOS will copy your program for execution */
+INCLUDE generated/output_format.ld
+ENTRY(_start)
+
+__DYNAMIC = 0;
+
+INCLUDE generated/regions.ld
+
+SECTIONS
+{
+	.text :
+	{
+		_ftext = .;
+		/* Make sure crt0 files come first, and they, and the isr */
+		/* don't get disposed of by greedy optimisation */
+		*crt0*(.text)
+		KEEP(*crt0*(.text))
+		KEEP(*(.text.isr))
+
+		*(.text .stub .text.* .gnu.linkonce.t.*)
+		_etext = .;
+	} > bootrom 
+
+	.rodata :
+	{
+		. = ALIGN(8);
+		_frodata = .;
+		*(.rodata .rodata.* .gnu.linkonce.r.*)
+		*(.rodata1)
+		*(.got .got.*)
+		*(.toc .toc.*)
+		. = ALIGN(8);
+		_erodata = .;
+	} > bootrom 
+
+	.data :
+	{
+		. = ALIGN(8);
+		_fdata = .;
+		*(.data .data.* .gnu.linkonce.d.*)
+		*(.data1)
+		_gp = ALIGN(16);
+		*(.sdata .sdata.* .gnu.linkonce.s.*)
+		. = ALIGN(8);
+		_edata = .;
+	} > sram AT > bootrom 
+
+	.bss :
+	{
+		. = ALIGN(8);
+		_fbss = .;
+		*(.dynsbss)
+		*(.sbss .sbss.* .gnu.linkonce.sb.*)
+		*(.scommon)
+		*(.dynbss)
+		*(.bss .bss.* .gnu.linkonce.b.*)
+		*(COMMON)
+		. = ALIGN(8);
+		_ebss = .;
+		_end = .;
+	} > sram
 }
 
-ENTRY(_start) /* LiteX BIOS provides _start, which eventually calls main() */
+PROVIDE(_fstack = ORIGIN(sram) + LENGTH(sram));
 
-SECTIONS {
-    /* Code and read-only data go into the ROM. */
-    /* objcopy will extract this starting from address 0 for the .bin file. */
-    .text : {
-        *(.text .text.*)
-        *(.rodata .rodata.*)
-    } > rom
-
-    /* Initialized data goes into the ROM. */
-    /* The BIOS will copy this from ROM to main_ram during startup. */
-    .data : {
-        *(.data .data.*)
-    } > rom
-
-    /* Uninitialized data (BSS) goes directly into main_ram (RAM) and is cleared by the BIOS. */
-	.bss (NOLOAD) : {
-        . = ALIGN(16);
-        _bss_start = .; /* Add this line */
-        *(.bss .bss.*)
-        *(COMMON)
-        _bss_end = .;   /* Add this line */
-    } > main_ram
-
-    /* Stack goes into main_ram (RAM). */
-    .stack (NOLOAD) : {
-        . = ALIGN(16);
-        . += 0x1000; /* Allocate 4KB for stack */
-        _stack = .;
-    } > main_ram
-
-    /* Heap starts after BSS and Stack in main_ram. */
-    _heap_start = .;
-    _heap_end = ORIGIN(main_ram) + LENGTH(main_ram);
-}
+PROVIDE(_fdata_rom = LOADADDR(.data));
+PROVIDE(_edata_rom = LOADADDR(.data) + SIZEOF(.data));
