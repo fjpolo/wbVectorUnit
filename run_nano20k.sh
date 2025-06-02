@@ -7,6 +7,11 @@ set -e
 # Define the root directory of your project (where this script is located)
 PROJECT_ROOT="/mnt/c/Workspace/wbVectorUnit"
 
+# Set PYTHONPATH to include the root of your LiteX and LiteX-Boards installations.
+# This is crucial for Python to find 'litex.soc', 'litex_boards', etc.
+# This line ensures that Python can locate modules like 'litex.soc.interconnect.wishbone_interface'.
+export PYTHONPATH="${PROJECT_ROOT}/litex/litex:${PROJECT_ROOT}/litex/litex-boards${PYTHONPATH:+:$PYTHONPATH}"
+
 # Path to your OSS CAD Suite environment script
 OSS_CAD_SUITE_ENV_SCRIPT="${HOME}/oss-cad-suite/environment"
 
