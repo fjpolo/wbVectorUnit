@@ -8,8 +8,8 @@ DEMO_PATH=${PWD}/demo/demo.bin
 export PYTHONPATH=$PYTHONPATH:$(pwd)/litex/litex/
 # DEMO_PATH=${PWD}/firmware/demo/demo.bin
 
-# # Fw application
-# cd firmware/demo/ && make && cd ${ROOT_DIR} && cp firmware/demo/demo.bin . && mv demo.bin bootrom.bin
+# Fw application
+cd firmware/demo/ && make all && cp demo.bin bootrom.bin && mv bootrom.bin ${PWD}/../../litex/litex-boards/litex_boards/targets/bootrom.bin && cd ${ROOT_DIR}
 
 # LiteX
 # source ~/oss-cad-suite/environment && cd litex/litex-boards/litex_boards/targets/ && ./sipeed_tang_nano_20k.py --flash --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
@@ -19,7 +19,7 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)/litex/litex/
 # source ~/oss-cad-suite/environment && ./litex/litex-boards/litex_boards/targets/sipeed_tang_nano_20k.py --build --integrated-rom-init=${DEMO_PATH} --toolchain=apicula --cpu-type=serv --bus-standard=wishbone && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
 # source ~/oss-cad-suite/environment && ./litex/litex-boards/litex_boards/targets/sipeed_tang_nano_20k.py --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone --bios-lto --bios-console disable --integrated-rom-size 32768 && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
 # source ~/oss-cad-suite/environment && cd litex/litex-boards/litex_boards/targets/ && python3 sipeed_tang_nano_20k.py --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone --bios-lto --bios-console disable --integrated-rom-size 32768 && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
-source ~/oss-cad-suite/environment && cd litex/litex-boards/litex_boards/targets/ && python3 sipeed_tang_nano_20k.py --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone --integrated-rom-size 32768 && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
+source ~/oss-cad-suite/environment && cd litex/litex-boards/litex_boards/targets/ && python3 sipeed_tang_nano_20k.py --build --toolchain=apicula --cpu-type=serv --bus-standard=wishbone --integrated-rom-size 32768 --csr-csv csr.csv | tee build.log && cd ${PWD}/build/sipeed_tang_nano_20k/gateware/ && sudo openFPGALoader -b tangnano20k -f sipeed_tang_nano_20k.fs -m flash --verbose && cd ${ROOT_DIR}
 
 # # Flash app to SPIFlash
 # python3 -m litex.soc.software.crcfbigen firmware/demo/demo.bin -o firmware/demo/demo.fbi --fbi --little
