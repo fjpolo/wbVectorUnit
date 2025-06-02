@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <generated/csr.h> // This will now correctly define WB_VECTOR_UNIT_BASE (from soc.h)
-#include <hw/common.h>   // For csr_read_simple, csr_write_simple
+#include <generated/csr.h> 
+#include <generated/soc.h> 
+#include <hw/common.h>
 
 // --- Function Prototype Declaration ---
 void vector_test_cmd(void); // Add this line to resolve compiler warning
@@ -10,7 +11,7 @@ void vector_test_cmd(void) {
     printf("\n--- Extended Wishbone Vector Unit Test (Manual Wishbone Slave) ---\n");
 
     uint32_t read_val;
-    uint32_t write_val_status = 0xAABBCCDD;
+    uint32_t write_val_status  = 0xAABBCCDD;
     uint32_t write_val_control = 0x11223344;
     uint32_t write_val_address = 0xFFEEAA55;
 
